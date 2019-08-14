@@ -11,7 +11,12 @@ namespace GradeBook
             book.AddGrade(89.1);
             book.AddGrade(90.5);
             book.AddGrade(77.5);
-            book.ShowStatistics();
+
+            var stats = book.GetStatistics();
+
+            Console.WriteLine($"Минимальная оценка равна {stats.Low}");
+            Console.WriteLine($"Максимальная оценка равна {stats.High}");
+            Console.WriteLine($"Средняя оценка равна {stats.Average:N1}");
 
             Console.ReadKey();
         }
