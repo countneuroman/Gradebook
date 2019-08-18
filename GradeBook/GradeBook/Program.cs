@@ -17,6 +17,7 @@ namespace GradeBook
             Console.WriteLine($"Минимальная оценка равна {stats.Low}");
             Console.WriteLine($"Максимальная оценка равна {stats.High}");
             Console.WriteLine($"Средняя оценка равна {stats.Average:N1}");
+            Console.WriteLine($"Буквенная средняя оценка равна {stats.Letter}");
 
             Console.ReadKey();
         }
