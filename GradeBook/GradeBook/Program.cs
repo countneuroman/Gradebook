@@ -23,7 +23,7 @@ namespace GradeBook
             Console.ReadKey();
         }
 
-        private static void EnterGrades(InMemoryBook book)
+        private static void EnterGrades(IBook book)
         {
             while (true)
             {
