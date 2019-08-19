@@ -6,13 +6,35 @@ namespace GradeBook
 {
     public delegate void GradeAddedDelegate(object sender, EventArgs args);
 
-    public class Book
+    public class NamedObject
     {
-        public Book(string name)
+        public NamedObject(string name)
+        {
+            Name = name;
+        }
+        public string Name
+        {
+            get;
+            set;
+        }
+    }
+
+    public abstract class Book : NamedObject
+    {
+        public Book(string name) : base(name)
+        {
+        }
+
+        public abstract void AddGrade(double grade);
+    }
+    public class InMemoryBook : Book
+    {
+        public InMemoryBook(string name) : base(name)
         {
             grades = new List<double>();
             Name = name;
         }
+    
 
         public void AddGrade(char letter)
         {
@@ -39,7 +61,7 @@ namespace GradeBook
             }
         }
 
-        public void AddGrade(double grade)
+        public override void AddGrade(double grade)
         {
             if (grade <= 100 && grade >= 0)
             {
@@ -98,12 +120,7 @@ namespace GradeBook
             throw new NotImplementedException();
         }
 
-        private List<double> grades;
 
-        public string Name
-        {
-            get;
-            set;
-        }
+        private List<double> grades;
     }
 }
