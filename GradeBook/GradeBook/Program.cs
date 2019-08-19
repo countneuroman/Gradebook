@@ -8,6 +8,7 @@ namespace GradeBook
         static void Main(string[] args)
         {
             var book = new Book("Vadim Gradebook");
+            book.GradeAdded += OnGradeAdded;
 
             var done = false;
 
@@ -42,5 +43,11 @@ namespace GradeBook
 
             Console.ReadKey();
         }
+
+        static void OnGradeAdded(object sender, EventArgs e)
+        {
+            Console.WriteLine("Оценка добавлена");
+        }
+
     }
 }
