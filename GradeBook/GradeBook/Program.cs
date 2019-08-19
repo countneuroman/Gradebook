@@ -34,6 +34,7 @@ namespace GradeBook
 
                 var stats = book.GetStatistics();
 
+                Console.WriteLine($"Для книги {book.Name}");
                 Console.WriteLine($"Минимальная оценка равна {stats.Low}");
                 Console.WriteLine($"Максимальная оценка равна {stats.High}");
                 Console.WriteLine($"Средняя оценка равна {stats.Average:N1}");
