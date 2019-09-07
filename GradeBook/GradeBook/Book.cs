@@ -38,34 +38,9 @@ namespace GradeBook
         public abstract Statistics GetStatistics();
     }
 
-    public class DiskBook : Book
+    public class inMemoryBook : Book
     {
-        public DiskBook(string name) : base(name)
-        {
-        }
-
-        public override event GradeAddedDelegate GradeAdded;
-
-        public override void AddGrade(double grade)
-        {
-            using (var writer = File.AppendText($"{Name}.txt"))
-            {
-                writer.WriteLine(grade);
-                if (GradeAdded != null)
-                {
-                    GradeAdded(this, new EventArgs());
-                }
-            }
-        }
-
-        public override Statistics GetStatistics()
-        {
-            throw new NotImplementedException();
-        }
-    }
-    public class InMemoryBook : Book
-    {
-        public InMemoryBook(string name) : base(name)
+        public inMemoryBook(string name) : base(name)
         {
             grades = new List<double>();
             Name = name;
