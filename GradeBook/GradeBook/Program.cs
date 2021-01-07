@@ -8,7 +8,10 @@ namespace GradeBook
         static void Main(string[] args)
         {
             IBook book = new inMemoryBook("Vadim Gradebook");
-            book.GradeAdded += OnGradeAdded;
+            book.GradeAdded += delegate
+            {
+                Console.WriteLine("Оценка добавлена");
+            };
 
             EnterGrades(book);
 

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.Text;
 
@@ -66,17 +67,10 @@ namespace GradeBook
         public override Statistics GetStatistics()
         {
             var result = new Statistics();
-            result.Average = 0.0;
-            result.High = double.MinValue;
-            result.Low = double.MaxValue;
-
-            for (var index = 0; index < grades.Count; index++)
-            {
-                result.High = Math.Max(grades[index], result.High);
-                result.Low = Math.Min(grades[index], result.Low);
-                result.Average += grades[index];
-            }
-            result.Average /= grades.Count;
+            //Используем LINQ для вычисления условий.
+            result.Average = grades.Average();
+            result.High = grades.Max();
+            result.Low = grades.Min();
 
             switch (result.Average)
             {
