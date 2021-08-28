@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 
 namespace GradeBook
 {
@@ -17,11 +16,11 @@ namespace GradeBook
 
             var stats = book.GetStatistics();
 
-            Console.WriteLine($"Для книги {book.Name}");
-            Console.WriteLine($"Минимальная оценка равна {stats.Low}");
-            Console.WriteLine($"Максимальная оценка равна {stats.High}");
-            Console.WriteLine($"Средняя оценка равна {stats.Average:N1}");
-            Console.WriteLine($"Буквенная средняя оценка равна {stats.Letter}");
+            Console.WriteLine($"For book {book.Name}");
+            Console.WriteLine($"Minimal grade equals {stats.Low}");
+            Console.WriteLine($"Maximal grade equals {stats.High}");
+            Console.WriteLine($"Average grade equals {stats.Average:N1}");
+            Console.WriteLine($"Letter grade equals {stats.Letter}");
 
             Console.ReadKey();
         }
@@ -30,7 +29,7 @@ namespace GradeBook
         {
             while (true)
             {
-                Console.WriteLine("Введи число или 'q' для выхода");
+                Console.WriteLine("Enter number or 'q' for exit");
                 var input = Console.ReadLine();
 
                 if (input == "q")
@@ -48,11 +47,6 @@ namespace GradeBook
                 }
             }
 
-        }
-
-        static void OnGradeAdded(object sender, EventArgs e)
-        {
-            Console.WriteLine("Оценка добавлена");
         }
 
     }

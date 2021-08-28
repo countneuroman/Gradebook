@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Linq;
 using System.Collections.Generic;
-using System.Text;
 
 namespace GradeBook
 {
@@ -20,7 +19,6 @@ namespace GradeBook
             grades = new List<double>();
             Name = name;
         }
-
 
         public void AddGrade(char letter)
         {
@@ -67,7 +65,6 @@ namespace GradeBook
         public override Statistics GetStatistics()
         {
             var result = new Statistics();
-            //Используем LINQ для вычисления условий.
             result.Average = grades.Average();
             result.High = grades.Max();
             result.Low = grades.Min();
@@ -93,7 +90,6 @@ namespace GradeBook
 
             return result;
         }
-
 
         private List<double> grades;
     }
