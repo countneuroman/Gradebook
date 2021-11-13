@@ -22,14 +22,18 @@ namespace GradeBook
 
         public override void AddGrade(double grade)
         {
-            if (grade is <= 100 and >= 0)
+            switch (grade)
             {
-                _grades.Add(grade);
-                GradeAdded?.Invoke(this, EventArgs.Empty);
-            }
-            else
-            {
-                Console.WriteLine("Invalid value!");
+                case <= 100 and >= 0:
+                    _grades.Add(grade);
+                    GradeAdded?.Invoke(this, EventArgs.Empty);
+                    break;
+                case < 0:
+                    Console.WriteLine("Invalid value! The value must be more than 0!");
+                    break;
+                case > 100:
+                    Console.WriteLine("Invalid value! The value must be not more than 100!");
+                    break;
             }
         }
 

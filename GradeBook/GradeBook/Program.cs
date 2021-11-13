@@ -38,8 +38,14 @@ namespace GradeBook
                 }
                 try
                 {
-                    var grade = double.Parse(input);
-                    book.AddGrade(grade);
+                    if (!string.IsNullOrEmpty(input) && double.TryParse(input, out var grade))
+                    {
+                        book.AddGrade(grade);
+                    }
+                    else
+                    {
+                        Console.WriteLine("You must enter the numeric!");
+                    }
                 }
                 catch (Exception ex)
                 {
