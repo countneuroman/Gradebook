@@ -12,48 +12,20 @@ namespace GradeBook
         public char Letter;
     }
 
-    public class inMemoryBook : Book
+    public class InMemoryBook : Book
     {
-        public inMemoryBook(string name) : base(name)
+        public InMemoryBook(string name) : base(name)
         {
-            grades = new List<double>();
+            _grades = new List<double>();
             Name = name;
-        }
-
-        public void AddGrade(char letter)
-        {
-            switch (letter)
-            {
-                case 'A':
-                    AddGrade(90);
-                    break;
-                case 'B':
-                    AddGrade(80);
-                    break;
-                case 'C':
-                    AddGrade(70);
-                    break;
-                case 'D':
-                    AddGrade(60);
-                    break;
-                case 'F':
-                    AddGrade(50);
-                    break;
-                default:
-                    AddGrade(0);
-                    break;
-            }
         }
 
         public override void AddGrade(double grade)
         {
-            if (grade <= 100 && grade >= 0)
+            if (grade is <= 100 and >= 0)
             {
-                grades.Add(grade);
-                if (GradeAdded != null)
-                {
-                    GradeAdded(this, new EventArgs());
-                }
+                _grades.Add(grade);
+                GradeAdded?.Invoke(this, EventArgs.Empty);
             }
             else
             {
@@ -64,33 +36,25 @@ namespace GradeBook
         public override event GradeAddedDelegate GradeAdded;
         public override Statistics GetStatistics()
         {
-            var result = new Statistics();
-            result.Average = grades.Average();
-            result.High = grades.Max();
-            result.Low = grades.Min();
-
-            switch (result.Average)
+            var result = new Statistics
             {
-                case var d when d >= 90:
-                    result.Letter = 'A';
-                    break;
-                case var d when d >= 80:
-                    result.Letter = 'B';
-                    break;
-                case var d when d >= 70:
-                    result.Letter = 'C';
-                    break;
-                case var d when d >= 60:
-                    result.Letter = 'D';
-                    break;
-                default:
-                    result.Letter = 'F';
-                    break;
-            }
+                Average = _grades.Average(),
+                High = _grades.Max(),
+                Low = _grades.Min()
+            };
+
+            result.Letter = result.Average switch
+            {
+                >= 90 => 'A',
+                >= 80 => 'B',
+                >= 70 => 'C',
+                >= 60 => 'D',
+                _ => 'F'
+            };
 
             return result;
         }
 
-        private List<double> grades;
+        private readonly List<double> _grades;
     }
 }

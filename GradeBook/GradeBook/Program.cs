@@ -4,9 +4,9 @@ namespace GradeBook
 {
     class Program
     {
-        static void Main(string[] args)
+        private static void Main()
         {
-            IBook book = new inMemoryBook("Vadim Gradebook");
+            IBook book = new InMemoryBook("Vadim Grade book");
             book.GradeAdded += delegate
             {
                 Console.WriteLine("Оценка добавлена");

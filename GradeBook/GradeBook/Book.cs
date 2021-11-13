@@ -13,17 +13,10 @@ namespace GradeBook
             Name = name;
         }
     }
-    public interface IBook
-    {
-        void AddGrade(double grade);
-        Statistics GetStatistics();
-        string Name { get; }
-        event GradeAddedDelegate GradeAdded;
-    }
 
     public abstract class Book : NamedObject, IBook
     {
-        public Book(string name) : base(name)
+        protected Book(string name) : base(name)
         {
         }
 
